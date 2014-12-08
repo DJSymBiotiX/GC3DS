@@ -338,3 +338,26 @@ bool Gamecube_::get(uint8_t *buffer, uint8_t length,
         goto get_loop;
     }
 }
+
+// Gamecube Helper functions
+C_Stick_Oriendation Gamecube_::get_cstick_orientation() {
+    if (report.cxAxis < 80) {
+        return C_Stick_Orientation.LEFT;
+    }
+
+    if (report.cxAxis > 170) { 
+        return C_Stick_Orientation.RIGHT;
+    }
+
+    if (report.cyAxis > 170) {
+        return C_Stick_Orientation.UP;
+    }
+
+    if (report.cyAxis < 80) {
+        return C_Stick_Orientation.DOWN;
+    }
+
+    // XXX: Maybe C_Stick_Orientation should be a struct so we can have all 8
+    // positions reflected. Or make the enum have 8 elements instead of 4? Are
+    // diagonal smashes a thing?
+}

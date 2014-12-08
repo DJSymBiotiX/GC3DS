@@ -69,6 +69,13 @@ typedef union {
 // Gamecube Class
 // ==============
 
+typedef enum {
+    LEFT = 0,
+    RIGHT,
+    UP,
+    DOWN
+} C_Stick_Orientation;
+
 class Gamecube_ {
     public:
         Gamecube_(void);
@@ -97,6 +104,9 @@ class Gamecube_ {
         bool get(uint8_t *buffer, uint8_t length, volatile uint8_t *modePort,
                 volatile uint8_t *outPort, volatile uint8_t *inPort,
                 uint8_t bitMask);
+
+        // Function to return C-Stick orientation
+        C_Stick_Oriendation get_cstick_orientation();
 
         // Structs that store the controller states
         Gamecube_status_t status;
