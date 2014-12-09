@@ -65,16 +65,25 @@ typedef union {
     };
 } Gamecube_status_t;
 
+typedef union {
+    // 1 Byte to hold the c-stick orientation data
+    uint8_t whole8;
+
+    struct {
+        // Use the first 4 bits for the 4 cardinal directions
+        uint8_t left    : 1;
+        uint8_t right   : 1;
+        uint8_t up      : 1;
+        uint8_t down    : 1;
+
+        // Keep the last 4 bits here
+        uint8_t extra   : 4;
+    }
+} C_stick_orientation_t;
+
 // ==============
 // Gamecube Class
 // ==============
-
-typedef enum {
-    LEFT = 0,
-    RIGHT,
-    UP,
-    DOWN
-} C_Stick_Orientation;
 
 class Gamecube_ {
     public:
@@ -105,18 +114,18 @@ class Gamecube_ {
                 volatile uint8_t *outPort, volatile uint8_t *inPort,
                 uint8_t bitMask);
 
-        // Function to return C-Stick orientation
-        C_Stick_Oriendation get_cstick_orientation();
-
         // Structs that store the controller states
         Gamecube_status_t status;
         Gamecube_data_t report;
+        C_stick_orientation_t c_stick_orientation;
 
     private:
         uint8_t _bitMask;
         volatile uint8_t * _outPort;
         volatile uint8_t * _inPort;
         volatile uint8_t * _modePort;
+
+        void calculate_c_stick_orientation(void);
 };
 
 extern Gamecube_ Gamecube;

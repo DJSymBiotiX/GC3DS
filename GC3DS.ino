@@ -34,7 +34,8 @@ void loop() {
 
     // Trigger 3DS buttons from GC Buttons
     // XXX: Add mapping from GC to 3DS so you can code in any mapping
-    button_control(3DS.A, Gamecube.report.a);
+    // button_control(3DS.A, Gamecube.report.a);
+    // Don't trigger A until we check for c-stick smashes
     button_control(3DS.B, Gamecube.report.b);
     button_control(3DS.X, Gamecube.report.x);
     button_control(3DS.Y, Gamecube.report.y);
@@ -51,13 +52,31 @@ void loop() {
     button_control(3DS.R, Gamecube.report.r);
 
     // Code for triggers. Trigger after half way down
+    // (can we just use the bool expression here?)
     //button_control(3DS.L, Gamecube.report.left > 127 ? 1 : 0);
     //button_control(3DS.R, Gamecube.report.right > 127 ? 1 : 0);
 
     // Trigger 3DS-Stick X and Y Axis from GC Stick (Not C-Pad)
-    c_stick_control(Gamecube.report.xAxis, Gamecube.report.yAxis);
+    // Don't trigger circle pad until we check for c-stick smashes
+    // circle_pad_control(Gamecube.report.xAxis, Gamecube.report.yAxis);
 
-
+    // Smash Attacks (Is there even diagonal support for this?)
+    if (Gamecube.c_stick.left) {
+        circle_pad_control_direction(3DS_circle_pad_direction.LEFT);
+        button_control(3DS.A, true);
+    } else if (Gamecube.c_stick.right) {
+        circle_pad_control_direction(3DS_circle_pad_direction.RIGHT);
+        button_control(3DS.A, true);
+    } else if (Gamecube.c_stick.up) {
+        circle_pad_control_direction(3DS_circle_pad_direction.UP);
+        button_control(3DS.A, true);
+    } else if (Gamecube.c_stick.down) {
+        circle_pad_control_direction(3DS_circle_pad_direction.DOWN);
+        button_control(3DS.A, true);
+    } else {
+        // If the c-stick isn't touched, then just report A as usual
+        // and also report the circle pad as usual as well
+        button_control(3DS.A, Gamecube.report.a);
+        circle_pad_control(Gamecube.report.xAxis, Gabecube.report.yAxis);
+    }
 }
-
-

@@ -67,6 +67,9 @@ bool Gamecube_::init(void) {
         status.whole8[1] = temp;
     }
 
+    // Set c-stick orientation
+    calculate_c_stick_orientation();
+
     // Return the status information for optional use
     return newinput;
 }
@@ -135,6 +138,9 @@ bool Gamecube_::read(bool rumble) {
         // Translate the data in raw_dump to something useful
         translate_raw_data(raw_dump, &report, sizeof(report));
     }
+
+    // Set the c-stick orientation
+    calculate_c_stick_orientation();
 
     // Return status information for optional use
     return newinput;
@@ -340,24 +346,28 @@ bool Gamecube_::get(uint8_t *buffer, uint8_t length,
 }
 
 // Gamecube Helper functions
-C_Stick_Oriendation Gamecube_::get_cstick_orientation() {
+void Gamecube_::calculate_c_stick_orientation() {
+    // Reset C-Stick Object
+    c_stick.whole8 = 0;
+
+    // XXX: Fine tune these values a little more
+    // Left
     if (report.cxAxis < 80) {
-        return C_Stick_Orientation.LEFT;
+        c_stick.left = 1;
     }
 
-    if (report.cxAxis > 170) { 
-        return C_Stick_Orientation.RIGHT;
+    // Right
+    if (report.cxAxis > 170) {
+        c_stick.right = 1;
     }
 
+    // Up
     if (report.cyAxis > 170) {
-        return C_Stick_Orientation.UP;
+        c_stick.up = 1;
     }
 
+    // Down
     if (report.cyAxis < 80) {
-        return C_Stick_Orientation.DOWN;
+        c_stick.down = 1;
     }
-
-    // XXX: Maybe C_Stick_Orientation should be a struct so we can have all 8
-    // positions reflected. Or make the enum have 8 elements instead of 4? Are
-    // diagonal smashes a thing?
 }

@@ -3,7 +3,16 @@
 
 #include <Arduino.h>
 
+typedef struct {
+    LEFT = 0,
+    RIGHT,
+    UP,
+    DOWN
+} 3DS_circle_pad_direction;
+
 void button_control(char pin, char state);
+void circle_pad_control(uint8_t x_val, uint8_t y_val);
+void circle_pad_control_direction(3DS_circle_pad_direction direction);
 void initialize_3ds_pins(void);
 
 // Set the pin definitions here
