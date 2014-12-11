@@ -26,10 +26,10 @@ void circle_pad_control(uint8_t x_val, uint8_t y_val) {
 // XXX: Update to 8 cardinal directions?
 void circle_pad_control_direction(DS_circle_pad_direction direction) {
     switch(direction) {
-        case LEFT:
+        case RIGHT:
             circle_pad_control(255, 127);
             break;
-        case RIGHT:
+        case LEFT:
             circle_pad_control(0, 127);
             break;
         case UP:

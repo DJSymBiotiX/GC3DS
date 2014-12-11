@@ -22,8 +22,8 @@ class DS_ {
     static const uint8_t B       =  1;
     static const uint8_t X       =  2;
     static const uint8_t Y       =  3;
-    static const uint8_t L       =  4;
-    static const uint8_t R       =  7;
+    static const uint8_t L       =  7;
+    static const uint8_t R       =  4;
     static const uint8_t LEFT    =  8;
     static const uint8_t RIGHT   =  9;
     static const uint8_t UP      = 10;

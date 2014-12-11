@@ -3,7 +3,7 @@
 #include "stdlib.h"
 
 // Set debug to 1 to enable it, else set to 0
-#define debug 1
+#define debug 0
 
 // Define the gamecube data pin
 #define GC_DATA_PIN 13
@@ -32,7 +32,6 @@ void loop() {
     // Read data from the GB controller into the report struct
     Gamecube.read(false);
 
-    /*
     // Trigger 3DS buttons from GC Buttons
     // XXX: Add mapping from GC to 3DS so you can code in any mapping
     // button_control(3DS.A, Gamecube.report.a);
@@ -80,5 +79,4 @@ void loop() {
         button_control(DS.A, Gamecube.report.a);
         circle_pad_control(Gamecube.report.xAxis, Gamecube.report.yAxis);
     }
-    */
 }
