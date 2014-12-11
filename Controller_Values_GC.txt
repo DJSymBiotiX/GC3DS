@@ -1,0 +1,37 @@
+-- C-Stick --       | -- Control Stick --   | -- L/R Triggers --
+                    |                       |
+Center:             | Center:               | Released:
+X = 120             | X = 119               | L = 31
+Y = 131             | Y = 122               | R = 29
+                    |                       |
+Up:                 | Up:                   | Depressed (Before Button):
+X = 116             | X = 115               | L = 190
+Y = 210             | Y = 212               | R = 194
+                    |                       |
+Up-Right:           | Up-Right:             | Depressed (After Button):
+X = 181             | X = 191               | L = 223
+Y = 191             | Y = 192               | R = 237
+                    |                       |
+Right:              | Right:                |
+X = 202             | X = 219               |
+Y = 126             | Y = 128               |
+                    |                       |
+Down-Right:         | Down-Right:           |
+X = 185             | X = 194               |
+Y = 56              | Y = 64                |
+                    |                       |
+Down:               | Down:                 |
+X = 115             | X = 114               |
+Y = 35              | Y = 41                |
+                    |                       |
+Down-Left:          | Down-Left:            |
+X = 52              | X = 42                |
+Y = 60              | Y = 64                |
+                    |                       |
+Left:               | Left:                 |
+X = 29              | X = 16                |
+Y = 125             | Y = 122               |
+                    |                       |
+Up-Left:            | Up-Left:              |
+X = 54              | X = 43                |
+Y = 192             | Y = 188               |
