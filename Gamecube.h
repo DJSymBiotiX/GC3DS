@@ -78,7 +78,7 @@ typedef union {
 
         // Keep the last 4 bits here
         uint8_t extra   : 4;
-    }
+    };
 } C_stick_orientation_t;
 
 // ==============
@@ -117,7 +117,7 @@ class Gamecube_ {
         // Structs that store the controller states
         Gamecube_status_t status;
         Gamecube_data_t report;
-        C_stick_orientation_t c_stick_orientation;
+        C_stick_orientation_t c_stick;
 
     private:
         uint8_t _bitMask;
